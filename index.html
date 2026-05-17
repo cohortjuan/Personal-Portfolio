@@ -1052,9 +1052,7 @@ nav {
 }
 
 /* ────────────────────────────────────────────────────────────────
-   HERO STATS — each number now has a different colored glow
-   This is one of the places we spread the palette beyond
-   just-burgundy-in-the-game. Three colors, four numbers.
+   HERO STATS — each number now has a different glow
 ──────────────────────────────────────────────────────────────── */
 .hero-stats {
   display: flex;
@@ -2029,9 +2027,6 @@ themeBtn.addEventListener('click', (e) => {
 
 /* ════════════════════════════════════════════════════════════════
    SCROLL-DRIVEN AMBIENT ORBS
-   The fixed background orbs drift in response to scroll position.
-   sin/cos with different frequencies for x vs y means they move
-   independently — feels alive, not linear.
 ══════════════════════════════════════════════════════════════════ */
 let orbTicking = false;
 window.addEventListener('scroll', () => {
