@@ -614,39 +614,6 @@ nav {
 .hero-text { min-width: 0; }
 
 /* ────────────────────────────────────────────────────────────────
-   PORTRAIT — torn paper / ninja scroll edge
-──────────────────────────────────────────────────────────────── */
-.hero-portrait-col {
-  position: relative;
-  padding-top: clamp(8px, 2vw, 24px);
-}
-.hero-portrait-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  /* Torn paper / ragged edge clip-path */
-  clip-path: polygon(
-    2% 5%, 6% 0%, 10% 4%, 15% 1%, 20% 5%, 26% 2%, 31% 6%, 37% 1%,
-    43% 5%, 49% 0%, 55% 4%, 61% 1%, 67% 5%, 73% 2%, 79% 6%, 85% 1%,
-    91% 5%, 96% 2%, 100% 6%,
-    97% 14%, 100% 28%, 97% 42%, 100% 56%, 97% 70%, 100% 84%, 96% 100%,
-    89% 95%, 82% 100%, 75% 95%, 67% 100%, 59% 95%, 51% 100%,
-    43% 95%, 35% 100%, 27% 95%, 19% 100%, 11% 95%, 4% 100%,
-    2% 88%, 0% 72%, 3% 56%, 0% 40%, 3% 24%
-  );
-  filter: drop-shadow(4px 6px 20px rgba(0,0,0,0.55));
-  transition: filter 0.4s ease;
-}
-.hero-portrait-img:hover {
-  filter: drop-shadow(4px 6px 28px rgba(0,0,0,0.7));
-}
-[data-theme="naruto"] .hero-portrait-img {
-  filter: drop-shadow(0 0 16px rgba(249,115,22,0.35)) drop-shadow(4px 6px 20px rgba(0,0,0,0.6));
-}
-/* Portrait always visible */
-.hero-portrait-col { display: block; }
-
-/* ────────────────────────────────────────────────────────────────
    POOF PARTICLES (body-level, fixed)
 ──────────────────────────────────────────────────────────────── */
 #poof-container {
@@ -811,12 +778,7 @@ nav {
   display: block;
   border-radius: 12px;
   opacity: 0;
-  clip-path: polygon(
-    5% 0%, 15% 2%, 25% 1%, 35% 3%, 50% 0%, 65% 3%, 75% 1%, 85% 2%, 95% 0%,
-    98% 8%, 100% 18%, 99% 28%, 100% 38%, 98% 48%, 99% 58%, 100% 68%, 98% 78%, 99% 88%, 95% 95%,
-    85% 98%, 75% 99%, 65% 97%, 50% 100%, 35% 97%, 25% 99%, 15% 98%, 5% 95%,
-    2% 88%, 1% 78%, 2% 68%, 1% 58%, 2% 48%, 0% 38%, 2% 28%, 1% 18%, 2% 8%
-  );
+  clip-path: none;
   transition: opacity 0.5s ease;
 }
 
@@ -1360,13 +1322,13 @@ nav {
 }
 .game-text .section-title { margin-bottom: 24px; color: #f3f0ff; }
 .game-desc {
-  font-size: 0.88rem;
+  font-size: 1.65rem;
   color: rgba(243, 240, 255, 0.7);
   line-height: 1.75;
   margin-bottom: 24px;
 }
 .game-stakes {
-  font-size: 0.85rem;
+  font-size: 1.55rem;
   color: #f3f0ff;
   background: rgba(14, 10, 24, 0.9);
   border: 1px solid rgba(168, 85, 247, 0.4);
@@ -1378,7 +1340,7 @@ nav {
 }
 .game-stakes strong { color: #f5d98b; font-weight: 500; }
 .game-controls-hint {
-  font-size: 0.76rem;
+  font-size: 1.45rem;
   font-family: var(--fm);
   color: rgba(216, 180, 254, 0.65);
   margin-bottom: 24px;
@@ -1412,14 +1374,14 @@ nav {
 }
 .arcade-title {
   font-family: var(--fm);
-  font-size: 0.65rem;
+  font-size: 2.0rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: #d8b4fe;
 }
 .arcade-score {
   font-family: var(--fm);
-  font-size: 0.8rem;
+  font-size: 1.25rem;
   font-weight: 500;
   color: #f5d98b;
 }
@@ -1449,7 +1411,7 @@ nav {
 .arcade-hi span { color: #f5d98b; }
 #snake-start-btn {
   font-family: var(--fm);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   background: linear-gradient(135deg, #7c3aed, #a855f7);
@@ -1483,7 +1445,7 @@ nav {
   to   { opacity: 1; transform: translateY(0); }
 }
 .game-outcome p {
-  font-size: 0.78rem;
+  font-size: 2.75rem;
   color: #f3f0ff;
   margin-bottom: 10px;
   line-height: 1.55;
