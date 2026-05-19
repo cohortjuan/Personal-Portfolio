@@ -48,7 +48,6 @@ Currently learning React Hooks and state management. Actively interviewing for j
 
 ## Contact
 
-- **Email:** dajuan.hume@gmail.com
 - **LinkedIn:** [linkedin.com/in/juanhume](https://www.linkedin.com/in/juanhume/)
 
 ## License
