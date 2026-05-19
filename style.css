@@ -1,0 +1,72 @@
+/* --- ARCADE CABINET ENGINE --- */
+.arcade-cabinet {
+    width: 495px !important;
+    min-height: 560px !important;
+    margin: 40px auto !important;
+    background: radial-gradient(circle, #1a1a1a 0%, #050505 100%) !important;
+    border: 4px solid #a855f7 !important;
+    border-radius: 12px !important;
+    padding: 15px !important;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+    box-shadow: 0 0 50px rgba(168, 85, 247, 0.2) !important;
+}
+
+#snake-canvas {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1/1 !important;
+    image-rendering: pixelated !important;
+    box-shadow: 0 0 25px rgba(168, 85, 247, 0.4) !important;
+}
+
+/* --- DYNAMIC OUTCOME OVERLAY --- */
+#game-outcome {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 85% !important;
+    max-width: 280px !important;
+    background: rgba(10, 10, 10, 0.98) !important;
+    backdrop-filter: blur(8px) !important;
+    border: 2px solid #a855f7 !important;
+    z-index: 10000 !important;
+    display: none;
+    flex-direction: column !important;
+    align-items: center !important;
+    pointer-events: none; /* Prevents click-blocking when hidden */
+}
+
+#game-outcome.show { display: flex !important; pointer-events: auto !important; }
+
+/* --- THEMED CONTROLS --- */
+#snake-start-btn, .touch-btn {
+    background: #1a1a1a !important;
+    color: #a855f7 !important;
+    border: 2px solid #a855f7 !important;
+    font-family: 'Courier New', monospace !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+#snake-start-btn:hover, .touch-btn:hover {
+    background: #a855f7 !important;
+    color: #1a1a1a !important;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.6) !important;
+}
+
+/* --- GLOBAL CROSS-MODE READABILITY --- */
+@media (prefers-color-scheme: light) {
+    .project-desc, .hero-text, .game-desc, .contact-sub {
+        color: #1a1a1a !important; /* Forces high-contrast charcoal for light mode */
+    }
+    .section-label {
+        color: #4c1d95 !important;
+        font-weight: 700 !important;
+    }
+}
