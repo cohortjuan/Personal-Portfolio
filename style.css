@@ -1,4 +1,18 @@
-/* --- ARCADE CABINET ENGINE --- */
+/* --- GLOBAL RESET & THEME --- */
+:root {
+  --bg: #050505;
+  --th: #f3f0ff;
+  --accent: #a855f7;
+}
+body {
+  background-color: var(--bg);
+  color: var(--th);
+  font-family: 'DM Sans', sans-serif;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* --- ARCADE CABINET ENGINE (NEW) --- */
 .arcade-cabinet {
     width: 495px !important;
     min-height: 560px !important;
@@ -6,7 +20,7 @@
     background: radial-gradient(circle, #1a1a1a 0%, #050505 100%) !important;
     border: 4px solid #a855f7 !important;
     border-radius: 12px !important;
-    padding: 15px !important;
+    padding: 20px !important;
     position: relative !important;
     display: flex !important;
     flex-direction: column !important;
@@ -37,36 +51,23 @@
     display: none;
     flex-direction: column !important;
     align-items: center !important;
-    pointer-events: none; /* Prevents click-blocking when hidden */
 }
-
-#game-outcome.show { display: flex !important; pointer-events: auto !important; }
+#game-outcome.show { display: flex !important; }
 
 /* --- THEMED CONTROLS --- */
 #snake-start-btn, .touch-btn {
     background: #1a1a1a !important;
     color: #a855f7 !important;
     border: 2px solid #a855f7 !important;
-    font-family: 'Courier New', monospace !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1px !important;
+    padding: 10px 20px !important;
     cursor: pointer !important;
-    transition: all 0.3s ease !important;
 }
 
-#snake-start-btn:hover, .touch-btn:hover {
-    background: #a855f7 !important;
-    color: #1a1a1a !important;
-    box-shadow: 0 0 20px rgba(168, 85, 247, 0.6) !important;
+/* --- MOBILE TIGHTENING --- */
+@media (max-width: 768px) {
+  .arcade-cabinet { width: 90% !important; }
 }
 
-/* --- GLOBAL CROSS-MODE READABILITY --- */
-@media (prefers-color-scheme: light) {
-    .project-desc, .hero-text, .game-desc, .contact-sub {
-        color: #1a1a1a !important; /* Forces high-contrast charcoal for light mode */
-    }
-    .section-label {
-        color: #4c1d95 !important;
-        font-weight: 700 !important;
-    }
-}
+/* --- SECTION TIGHTENING --- */
+section { padding: 40px 0 !important; }
+.container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
