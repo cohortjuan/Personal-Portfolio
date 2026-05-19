@@ -1,1 +1,1698 @@
+/* ════════════════════════════════════════════════════════════════
+   DESIGN SYSTEM
+   Two themes, three accent colors (blue/gold/burgundy), all share
+   the same structure so the theme toggle just swaps variables.
+══════════════════════════════════════════════════════════════════ */
+:root {
+  --max-w: 880px;
+  --fd: 'Fraunces', serif;
+  --fb: 'DM Sans', sans-serif;
+  --fm: 'IBM Plex Mono', monospace;
 
+  /* DARK THEME — midnight library aesthetic */
+  --bg:    #060b17;
+  --bgs:   #0b1225;
+  --bgc:   #0f1a30;
+  --bgch:  #152040;
+
+  --blue:    #1e4bd8;
+  --bluel:   #3b6ef5;
+  --blued:   rgba(30,75,216,0.18);
+  --blueglow: rgba(30,75,216,0.32);
+
+  --gold:    #c9a227;
+  --goldl:   #e8c84a;
+  --goldd:   rgba(201,162,39,0.18);
+  --golddk:  #8a6e12;
+  --goldglow: rgba(201,162,39,0.26);
+
+  --burg:    #7d001e;
+  --burgl:   #a50028;
+  --burgd:   rgba(125,0,30,0.20);
+  --burgglow: rgba(165,0,40,0.32);
+
+  --th:    #edf0ff;
+  --tm:    #6e7899;
+  --tl:    #323a58;
+
+  --bd:    rgba(30,75,216,0.15);
+  --bdh:   rgba(30,75,216,0.35);
+}
+
+/* LIGHT THEME — warm parchment aesthetic
+   Different MOOD, not just inverted colors.
+   Backgrounds: warm cream. Borders: burgundy-tinted.
+   Gold becomes the dominant accent. */
+[data-theme="light"] {
+  --bg:    #faf6ed;
+  --bgs:   #fff8e7;
+  --bgc:   #fffcf3;
+  --bgch:  #fff0d0;
+
+  --blue:    #1a3eb8;
+  --bluel:   #1e4bd8;
+  --blued:   rgba(26,62,184,0.12);
+  --blueglow: rgba(26,62,184,0.22);
+
+  --gold:    #b8901f;
+  --goldl:   #d4af37;
+  --goldd:   rgba(184,144,31,0.18);
+  --golddk:  #6b5210;
+  --goldglow: rgba(184,144,31,0.26);
+
+  --burg:    #6b001a;
+  --burgl:   #8a0024;
+  --burgd:   rgba(107,0,26,0.15);
+  --burgglow: rgba(138,0,36,0.26);
+
+  --th:    #1a0a14;
+  --tm:    #5a4a52;
+  --tl:    #a09098;
+
+  --bd:    rgba(107,0,26,0.15);
+  --bdh:   rgba(107,0,26,0.30);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   NARUTO SECRET THEME — triple-click the hero name to unlock
+   Orange (jumpsuit) + navy (collar) + silver (headband metal)
+═══════════════════════════════════════════════════════════ */
+[data-theme="naruto"] {
+  --bg:    #1a0e05;
+  --bgs:   #28180c;
+  --bgc:   #2e1c12;
+  --bgch:  #3a2818;
+
+  --blue:    #f97316;
+  --bluel:   #fb923c;
+  --blued:   rgba(249,115,22,0.18);
+  --blueglow: rgba(30,58,138,0.40);
+
+  --burg:    #1e3a8a;
+  --burgl:   #3b82f6;
+  --burgd:   rgba(30,58,138,0.22);
+  --burgglow: rgba(124,58,237,0.36);
+
+  --gold:    #b8b8b8;
+  --goldl:   #e8e8e8;
+  --goldd:   rgba(184,184,184,0.18);
+  --golddk:  #707070;
+  --goldglow: rgba(249,115,22,0.34);
+
+  --th:    #fff6e5;
+  --tm:    #c9a782;
+  --tl:    #8b6b47;
+
+  --bd:    rgba(249,115,22,0.20);
+  --bdh:   rgba(249,115,22,0.40);
+}
+/* Hero name flips to chunky brush font + Naruto-logo style in Naruto mode */
+[data-theme="naruto"] .hero-name {
+  font-family: 'Bowlby One', cursive;
+  letter-spacing: 0.01em;
+  font-weight: 400;
+}
+[data-theme="naruto"] .hero-name.gold-text {
+  background: linear-gradient(
+    160deg,
+    #b84a0e 0%,
+    #f97316 22%,
+    #ffb347 48%,
+    #f97316 74%,
+    #b84a0e 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* Naruto logo signature: thick dark outline */
+  -webkit-text-stroke: 6px #1a063a;
+  paint-order: stroke fill;
+  filter: drop-shadow(0 0 20px rgba(249,115,22,0.45));
+}
+
+/* BELIEVE IT!! flash overlay */
+#believe-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 3vw, 2rem);
+  background: radial-gradient(circle at center, rgba(249,115,22,0.18), rgba(0,0,0,0.94));
+  pointer-events: none;
+}
+
+/* Shared Naruto-logo text style — orange-gold gradient + thick navy stroke */
+.naruto-styled-text {
+  font-family: 'Bowlby One', cursive;
+  letter-spacing: 0.02em;
+  display: inline-block;
+  /* Orange→gold gradient fill */
+  background: linear-gradient(
+    160deg,
+    #b84a0e 0%,
+    #f97316 22%,
+    #ffb347 48%,
+    #f97316 74%,
+    #b84a0e 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* Thick dark navy outline — Naruto logo signature */
+  -webkit-text-stroke: 6px #1a063a;
+  paint-order: stroke fill;
+  /* Warm glow behind the whole element */
+  filter: drop-shadow(0 0 28px rgba(249,115,22,0.55)) drop-shadow(0 6px 0 rgba(10,3,30,0.8));
+}
+
+#believe-overlay .believe-img,
+.believe-img {
+  width: min(92vw, 900px);
+  height: auto;
+  display: block;
+  transform: scale(0) rotate(-6deg);
+  animation: believe-bounce 1.1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  filter: drop-shadow(0 0 30px rgba(249,115,22,0.7));
+}
+
+
+
+#believe-overlay.exit { animation: believe-fade 0.55s ease-out forwards; }
+
+@keyframes believe-bounce {
+  0%   { transform: scale(0)    rotate(-8deg); opacity: 0; }
+  45%  { transform: scale(1.3)  rotate(-4deg); opacity: 1; }
+  65%  { transform: scale(0.9)  rotate(2deg); }
+  100% { transform: scale(1.08) rotate(0deg); opacity: 1; }
+}
+
+@keyframes believe-fade { to { opacity: 0; } }
+
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { 
+  scroll-behavior: smooth;
+  /* Dark theme kunai cursor */
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><defs><linearGradient id="bladeDark" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%231a1a2e;stop-opacity:1" /><stop offset="50%" style="stop-color:%231e2a4a;stop-opacity:1" /><stop offset="100%" style="stop-color:%23141a28;stop-opacity:1" /></linearGradient><linearGradient id="handleDark" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%23d4a574;stop-opacity:1" /><stop offset="50%" style="stop-color:%23c89860;stop-opacity:1" /><stop offset="100%" style="stop-color:%23d4a574;stop-opacity:1" /></linearGradient></defs><g transform="rotate(-45 16 16)"><polygon points="16,2 19,12 16,14 13,12" fill="url(%23bladeDark)" /><circle cx="16" cy="16" r="2.5" fill="none" stroke="%23666" stroke-width="0.8" /><rect x="14.5" y="18" width="3" height="10" fill="url(%23handleDark)" /><line x1="14.5" y1="20" x2="17.5" y2="20" stroke="%238b7355" stroke-width="0.3" /><line x1="14.5" y1="22" x2="17.5" y2="22" stroke="%238b7355" stroke-width="0.3" /><line x1="14.5" y1="24" x2="17.5" y2="24" stroke="%238b7355" stroke-width="0.3" /></g></svg>') 6 6, auto;
+}
+
+[data-theme="light"] {
+  /* Light theme silver kunai cursor */
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><defs><linearGradient id="bladeLight" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23e8e8e8;stop-opacity:1" /><stop offset="50%" style="stop-color:%23d3d3d3;stop-opacity:1" /><stop offset="100%" style="stop-color:%23c0c0c0;stop-opacity:1" /></linearGradient><linearGradient id="handleLight" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%238b6f47;stop-opacity:1" /><stop offset="50%" style="stop-color:%23704214;stop-opacity:1" /><stop offset="100%" style="stop-color:%238b6f47;stop-opacity:1" /></linearGradient></defs><g transform="rotate(-45 16 16)"><polygon points="16,2 19,12 16,14 13,12" fill="url(%23bladeLight)" stroke="%23999" stroke-width="0.4" /><circle cx="16" cy="16" r="2.5" fill="none" stroke="%23b8a89f" stroke-width="0.8" /><rect x="14.5" y="18" width="3" height="10" fill="url(%23handleLight)" /><line x1="14.5" y1="20" x2="17.5" y2="20" stroke="%23d4a574" stroke-width="0.3" /><line x1="14.5" y1="22" x2="17.5" y2="22" stroke="%23d4a574" stroke-width="0.3" /><line x1="14.5" y1="24" x2="17.5" y2="24" stroke="%23d4a574" stroke-width="0.3" /><text x="16" y="27" font-size="1.5" text-anchor="middle" fill="%23d4a574" font-family="serif" font-weight="bold">火</text></g></svg>') 6 6, auto;
+}
+
+/* Smooth theme transitions on EVERYTHING — not just body.
+   This is what makes the toggle feel deliberate. */
+body, .nav-logo, .nav-links a, .theme-toggle, .stack-pill, .project-card,
+.hard-part-toggle, .hard-part-inner, .chip, .arcade-cabinet, .game-section,
+.game-stakes, .game-outcome, .learning-pill, .availability-badge,
+.contact-deadline, footer, nav, .btn, .social-dock a {
+  transition: background 0.5s ease, color 0.5s ease,
+              border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+body {
+  background: var(--bg);
+  color: var(--th);
+  font-family: var(--fb);
+  font-size: 16px;
+  line-height: 1.7;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   AMBIENT BACKGROUND ORBS
+   Three large soft gradient blobs in the page corners that slowly
+   drift. Subtle — they tint the page with all three accent colors
+   without competing with content.
+══════════════════════════════════════════════════════════════════ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: -15%;
+  background:
+    radial-gradient(700px circle at 15% 20%, var(--blueglow) 0%, transparent 50%),
+    radial-gradient(600px circle at 85% 75%, var(--burgglow) 0%, transparent 50%),
+    radial-gradient(500px circle at 50% 50%, var(--goldglow) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+  transform: translate3d(var(--orb-x, 0px), var(--orb-y, 0px), 0);
+  transition: background 0.6s ease;
+  will-change: transform;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   VIEW TRANSITIONS API — circular reveal effect for theme toggle
+   The new theme expands as a circle from the click point on the
+   toggle button. Falls back gracefully in older browsers.
+══════════════════════════════════════════════════════════════════ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  animation: theme-reveal 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+::view-transition-old(root) {
+  animation: theme-fade 0.7s ease-out forwards;
+  z-index: -1;
+}
+
+@keyframes theme-reveal {
+  from { clip-path: circle(0% at var(--tx, 50%) var(--ty, 50%)); }
+  to   { clip-path: circle(150% at var(--tx, 50%) var(--ty, 50%)); }
+}
+
+@keyframes theme-fade {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   LAYOUT
+══════════════════════════════════════════════════════════════════ */
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  /* Fluid horizontal padding: 16px on tiny screens, up to 32px on wide */
+  padding: 0 clamp(16px, 4vw, 32px);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   METALLIC GOLD TEXT
+   Animated gradient — the gold shimmers slowly across the letters.
+══════════════════════════════════════════════════════════════════ */
+.gold-text {
+  background: linear-gradient(
+    130deg,
+    var(--golddk) 0%,
+    var(--gold) 25%,
+    var(--goldl) 48%,
+    var(--gold) 72%,
+    var(--golddk) 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 8s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION CHROME
+══════════════════════════════════════════════════════════════════ */
+.section-label {
+  font-family: var(--fm);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: var(--fd);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin-bottom: 40px;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   BUTTONS
+══════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--fb);
+  font-size: 0.83rem;
+  font-weight: 500;
+  padding: 9px 20px;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.btn-primary {
+  background: var(--blue);
+  color: #fff;
+  border-color: var(--blue);
+}
+.btn-primary:hover {
+  background: var(--bluel);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px var(--blued);
+}
+.btn-gold {
+  background: var(--goldd);
+  color: var(--goldl);
+  border-color: var(--golddk);
+}
+.btn-gold:hover {
+  background: rgba(201,162,39,0.28);
+  border-color: var(--gold);
+  box-shadow: 0 4px 20px var(--goldd);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--tm);
+  border-color: var(--bd);
+}
+.btn-ghost:hover {
+  border-color: var(--bdh);
+  color: var(--th);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   FLOATING SOCIAL DOCK
+══════════════════════════════════════════════════════════════════ */
+.social-dock {
+  position: fixed;
+  right: clamp(12px, 2vw, 24px);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 200;
+}
+.social-dock a {
+  width: 38px; height: 38px;
+  border-radius: 7px;
+  background: var(--bgc);
+  border: 1px solid var(--bd);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--tm);
+  font-size: 0.72rem;
+  font-family: var(--fm);
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.social-dock a:hover {
+  border-color: var(--golddk);
+  color: var(--goldl);
+  transform: translateX(-3px);
+  box-shadow: -4px 0 16px var(--goldd);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   NAV
+══════════════════════════════════════════════════════════════════ */
+nav {
+  padding: 32px 0;
+  border-bottom: 1px solid var(--bd);
+  margin-bottom: clamp(48px, 8vw, 80px);
+}
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.nav-logo {
+  font-family: var(--fd);
+  font-weight: 900;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  color: var(--th);
+}
+.nav-logo .dot { color: var(--gold); }
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.nav-links {
+  display: flex;
+  gap: clamp(16px, 3vw, 32px);
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.82rem;
+  color: var(--tm);
+  text-decoration: none;
+}
+.nav-links a:hover { color: var(--th); }
+.theme-toggle {
+  width: 34px; height: 34px;
+  border-radius: 6px;
+  background: var(--bgc);
+  border: 1px solid var(--bd);
+  color: var(--tm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  position: relative;
+  overflow: hidden;
+}
+.theme-toggle:hover {
+  border-color: var(--bdh);
+  color: var(--th);
+  transform: scale(1.05);
+}
+.theme-toggle:active { transform: scale(0.95); }
+
+/* ════════════════════════════════════════════════════════════════
+   HERO
+══════════════════════════════════════════════════════════════════ */
+.hero { margin-bottom: clamp(64px, 10vw, 112px); }
+
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.hero-location {
+  font-size: 0.78rem;
+  color: var(--tl);
+  font-family: var(--fm);
+  letter-spacing: 0.03em;
+}
+.availability-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  font-family: var(--fm);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--goldl);
+  background: var(--goldd);
+  border: 1px solid var(--golddk);
+  border-radius: 100px;
+  padding: 3px 10px;
+}
+.availability-badge::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: pulse 2.2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.2; }
+}
+
+/* ────────────────────────────────────────────────────────────────
+   HERO NAME — the J no longer gets clipped
+   - line-height bumped from 1.0 → 1.15 (descenders need room)
+   - padding-bottom adds buffer for the gold-text gradient clip
+   - display: inline-block constrains the gradient correctly
+──────────────────────────────────────────────────────────────── */
+.hero-name {
+  font-family: var(--fd);
+  font-size: clamp(2.6rem, 9vw, 5.8rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  padding-bottom: 0.08em;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+.hero-tagline {
+  font-family: var(--fb);
+  font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--bluel);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+
+.hero-role {
+  font-family: var(--fd);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  color: var(--tm);
+  margin-bottom: clamp(28px, 5vw, 40px);
+  letter-spacing: 0.01em;
+  opacity: 0.85;
+}
+.hero-role::before {
+  content: '— ';
+  color: var(--gold);
+  font-style: normal;
+  font-weight: 700;
+  margin-right: 2px;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   SUBTLE EASTER EGG HINT — no extra line of text.
+   A barely-there ✦ appears on the name itself; brightens on hover.
+──────────────────────────────────────────────────────────────── */
+.hero-name-wrap { position: relative; display: inline-block; cursor: pointer; }
+.hero-name-wrap::after {
+  content: '✦';
+  position: absolute;
+  top: 0.18em;
+  right: -0.9em;
+  font-size: 0.28em;
+  font-family: var(--fb);
+  color: var(--gold);
+  opacity: 0.18;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.hero-name-wrap:hover::after { opacity: 0.55; }
+
+/* ────────────────────────────────────────────────────────────────
+   NARUTO H1 IMAGE — replaces text heading in Naruto theme
+──────────────────────────────────────────────────────────────── */
+.hero-naruto-h1 {
+  display: none;
+  max-width: min(480px, 90vw);
+  height: auto;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 0 24px rgba(249,115,22,0.5));
+  animation: shimmer 8s ease-in-out infinite;
+}
+[data-theme="naruto"] .hero-name { display: none; }
+[data-theme="naruto"] .hero-naruto-h1 { display: block; }
+
+/* ────────────────────────────────────────────────────────────────
+   HERO TWO-COLUMN GRID
+──────────────────────────────────────────────────────────────── */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr clamp(180px, 22vw, 260px);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+.hero-text { min-width: 0; }
+
+/* ────────────────────────────────────────────────────────────────
+   POOF PARTICLES (body-level, fixed)
+──────────────────────────────────────────────────────────────── */
+#poof-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 500;
+}
+.poof-particle {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+}
+@keyframes poofBurst {
+  0%   { opacity: 0.85; transform: translate(0,0) scale(1); }
+  100% { opacity: 0; transform: translate(var(--tx),var(--ty)) scale(0.1); }
+}
+
+/* ────────────────────────────────────────────────────────────────
+   WOOD LOG (dynamically positioned, absolute to document)
+   Stays exactly where the portrait was — scrolls with page naturally
+──────────────────────────────────────────────────────────────── */
+.wood-log-fixed {
+  position: absolute;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 400;
+  animation: logDrop 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards;
+}
+@keyframes logDrop {
+  from { opacity: 0; transform: translateY(-24px) rotate(-12deg); }
+  to   { opacity: 1; transform: translateY(0) rotate(-8deg); }
+}
+
+/* Green bamboo log — accurate to anime */
+.log-bamboo {
+  position: relative;
+  margin: 0 auto;
+}
+.log-bamboo-body {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    #2d5a1b 0%, #4a8c2a 15%, #5da832 30%,
+    #6dc43a 50%, #5da832 70%, #4a8c2a 85%, #2d5a1b 100%
+  );
+  border-radius: 40% 40% 35% 35% / 10% 10% 8% 8%;
+  position: relative;
+  box-shadow: inset -6px 0 12px rgba(0,0,0,0.35), inset 4px 0 8px rgba(255,255,255,0.12);
+}
+.log-bamboo-body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent, transparent 18px,
+    rgba(0,0,0,0.18) 18px, rgba(0,0,0,0.18) 20px
+  );
+  border-radius: inherit;
+}
+.log-bamboo-end {
+  width: 100%;
+  height: 22px;
+  background: radial-gradient(ellipse 60% 60% at 50% 50%,
+    #7ad43e 0%, #4a8c2a 45%, #2d5a1b 100%
+  );
+  border-radius: 50%;
+  margin-top: -4px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+}
+.log-bamboo-end::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 55%; height: 55%;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0,0,0,0.2);
+  box-shadow: 0 0 0 5px rgba(0,0,0,0.08);
+}
+
+/* Puffy smoke clouds — anime style */
+.smoke-cloud {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff 0%, #e8e8e8 40%, rgba(220,220,220,0.6) 100%);
+  pointer-events: none;
+  animation: smokeRise var(--dur, 1.8s) ease-out var(--delay, 0s) both;
+}
+@keyframes smokeRise {
+  0%   { opacity: 0; transform: scale(0.2) translate(var(--sx,0px), var(--sy,0px)); }
+  25%  { opacity: 0.95; }
+  100% { opacity: 0; transform: scale(1.8) translate(var(--sx,0px), calc(var(--sy,0px) - 40px)); }
+}
+
+/* ────────────────────────────────────────────────────────────────
+   SNAKE BUTTON + GAME — always Orochimaru purple, all 3 themes
+──────────────────────────────────────────────────────────────── */
+.btn-snake,
+[data-theme="light"]  .btn-snake,
+[data-theme="naruto"] .btn-snake {
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  color: #fff;
+  border-color: #7c3aed;
+}
+.btn-snake:hover,
+[data-theme="light"]  .btn-snake:hover,
+[data-theme="naruto"] .btn-snake:hover {
+  background: linear-gradient(135deg, #6d28d9, #9333ea);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(124,58,237,0.45);
+}
+/* Lock game section + start button purple on all themes */
+#snake-start-btn,
+[data-theme="light"]  #snake-start-btn,
+[data-theme="naruto"] #snake-start-btn {
+  background: linear-gradient(135deg, #7c3aed, #a855f7) !important;
+  color: #fff !important;
+  border: none !important;
+}
+#snake-start-btn:hover,
+[data-theme="light"]  #snake-start-btn:hover,
+[data-theme="naruto"] #snake-start-btn:hover {
+  box-shadow: 0 0 20px rgba(168,85,247,0.45) !important;
+  transform: translateY(-1px) !important;
+}
+.game-section,
+[data-theme="light"]  .game-section,
+[data-theme="naruto"] .game-section {
+  background:
+    radial-gradient(circle at top left, rgba(145,92,255,0.18), transparent 40%),
+    linear-gradient(135deg, rgba(66,20,120,0.95), rgba(10,6,24,1)) !important;
+  border-color: rgba(180,120,255,0.28) !important;
+  border-left-color: #8b5cf6 !important;
+}
+
+@media (max-width: 660px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-portrait-col { display: none !important; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   NARUTO SUBSTITUTION JUTSU — headshot → poof → log
+   When user scrolls past hero, headshot fades out and leaves a
+   wooden log with smoke particles. Authentically styled.
+══════════════════════════════════════════════════════════════════ */
+.substitution-container {
+  position: fixed;
+  top: clamp(40px, 6vw, 80px);
+  right: clamp(16px, 4vw, 40px);
+  width: clamp(100px, 15vw, 180px);
+  height: auto;
+  z-index: 150;
+  pointer-events: none;
+}
+
+.headshot-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  opacity: 0;
+  clip-path: none;
+  transition: opacity 0.5s ease;
+}
+
+.headshot-image.reveal {
+  opacity: 0.7;
+  animation: slideInHeadshot 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes slideInHeadshot {
+  from {
+    opacity: 0;
+    transform: translateX(40px) translateY(-20px);
+  }
+  to {
+    opacity: 0.7;
+    transform: translateX(0) translateY(0);
+  }
+}
+
+.headshot-image.poof-out {
+  animation: poofOut 0.8s ease-out forwards;
+}
+
+@keyframes poofOut {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────
+   WOOD LOG — Naruto substitution jutsu style
+   Tapered top (stake-like), wood grain rings, singed edges
+──────────────────────────────────────────────────────────────── */
+.wood-log {
+  position: relative;
+  width: 100%;
+  height: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  margin-top: -8px;
+}
+
+.wood-log.show {
+  opacity: 1;
+  animation: logAppear 0.5s ease-out 0.3s forwards;
+}
+
+@keyframes logAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.log-top {
+  width: 0;
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-bottom: 40px solid #5d4037;
+  position: relative;
+  margin: 0 auto;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+}
+
+.log-top::before {
+  content: '';
+  position: absolute;
+  top: 38px;
+  left: -25px;
+  width: 50px;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    #4a3728 0%,
+    #6b5344 20%,
+    #3d2f1f 40%,
+    #8b6f47 60%,
+    #3d2f1f 80%,
+    #4a3728 100%
+  );
+  transform: scaleY(0.6);
+  border-radius: 2px;
+}
+
+.log-top::after {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: -28px;
+  width: 56px;
+  height: 100%;
+  background: 
+    linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.15) 70%, transparent 100%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(93,64,55,0.8) 3px,
+      rgba(93,64,55,0.8) 4px
+    );
+  pointer-events: none;
+}
+
+.log-middle {
+  width: 60px;
+  height: 35px;
+  background: linear-gradient(
+    90deg,
+    #4a3728 0%,
+    #6b5344 15%,
+    #5d4037 30%,
+    #8b6f47 50%,
+    #5d4037 70%,
+    #6b5344 85%,
+    #4a3728 100%
+  );
+  margin: 0 auto;
+  position: relative;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.7));
+}
+
+.log-middle::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(93,64,55,0.6) 2px,
+      rgba(93,64,55,0.6) 3px
+    ),
+    radial-gradient(ellipse 80% 50% at 50% 50%, rgba(139,111,71,0.4) 0%, transparent 70%);
+  border-radius: 2px;
+}
+
+.log-middle::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.15) 100%);
+  border-radius: 2px;
+}
+
+.log-bottom {
+  width: 60px;
+  height: 24px;
+  background: linear-gradient(
+    180deg,
+    #5d4037 0%,
+    #4a3728 50%,
+    #3d2f1f 100%
+  );
+  margin: 0 auto;
+  position: relative;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.8));
+}
+
+.log-bottom::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(61,47,31,0.7) 2px,
+      rgba(61,47,31,0.7) 3px
+    );
+}
+
+.log-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background: #3d2f1f;
+  border-radius: 1px;
+}
+
+.log-shine {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 20px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   POOF PARTICLES — smoke cloud explosion
+──────────────────────────────────────────────────────────────── */
+.poof-particles {
+  position: relative;
+  width: 100%;
+  height: 0;
+}
+
+.poof-particle {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+}
+
+@keyframes poofBurst {
+  0% {
+    opacity: 0.7;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) scale(0);
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────
+   HERO STATS — each number now has a different glow
+──────────────────────────────────────────────────────────────── */
+.hero-stats {
+  display: flex;
+  gap: clamp(14px, 3.5vw, 40px);
+  margin-bottom: 40px;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+.stat-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+.stat-number {
+  font-family: var(--fd);
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  padding-bottom: 0.05em;
+  display: inline-block;
+}
+/* Each stat = a different accent glow.
+   Subtle but distributes color across the hero. */
+.stat-block:nth-child(1) .stat-number { filter: drop-shadow(0 0 20px var(--blueglow)); }
+.stat-block:nth-child(2) .stat-number { filter: drop-shadow(0 0 20px var(--burgglow)); }
+.stat-block:nth-child(3) .stat-number { filter: drop-shadow(0 0 20px var(--goldglow)); }
+.stat-block:nth-child(4) .stat-number { filter: drop-shadow(0 0 16px rgba(255,255,255,0.06)); }
+
+.stat-label {
+  font-size: clamp(0.58rem, 1vw, 0.72rem);
+  color: var(--tm);
+  font-family: var(--fm);
+  letter-spacing: 0.05em;
+}
+
+.hero-bio {
+  font-size: clamp(1rem, 1.7vw, 1.1rem);
+  color: #a8b3ce;
+  max-width: 54ch;
+  line-height: 1.85;
+  margin-bottom: 32px;
+}
+.hero-bio .honest { color: var(--th); font-style: italic; }
+.hero-bio strong { color: var(--th); font-weight: 500; }
+
+.learning-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.76rem;
+  font-family: var(--fm);
+  color: var(--tm);
+  background: var(--bgc);
+  border: 1px solid var(--bd);
+  border-radius: 6px;
+  padding: 5px 12px;
+  margin-bottom: clamp(32px, 6vw, 48px);
+}
+.learning-pill span { color: var(--bluel); font-weight: 500; }
+
+.hero-ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   STACK
+══════════════════════════════════════════════════════════════════ */
+.stack-section, .projects-section { margin-bottom: clamp(80px, 14vw, 128px); }
+.stack-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.stack-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  font-family: var(--fm);
+  color: var(--th);
+  background: var(--bgc);
+  border: 1px solid var(--bd);
+  border-radius: 6px;
+  padding: 6px 13px;
+}
+.stack-pill:hover {
+  border-color: var(--bdh);
+  background: var(--bgch);
+  transform: translateY(-1px);
+}
+.stack-pill-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   PROJECTS — two cards, two different accents
+   Card 1 (Habit Tracker) → burgundy accent + burgundy hover glow
+   Card 2 (CSS Layout Lab) → blue accent + blue hover glow
+   This balances the page and spreads color.
+══════════════════════════════════════════════════════════════════ */
+.projects-grid { display: grid; gap: 32px; }
+
+.project-card {
+  background: var(--bgc);
+  border: 1px solid var(--bd);
+  border-radius: 12px;
+  padding: clamp(20px, 4vw, 32px);
+}
+.project-card:hover { transform: translateY(-2px) rotate(0deg); }
+
+.project-card.accent-burg {
+  border-left: 3px solid var(--burgl);
+  border-radius: 0 12px 12px 0;
+  transform: rotate(-0.6deg);
+  transition: transform 0.3s ease;
+}
+.project-card.accent-burg:hover {
+  border-color: var(--burg);
+  box-shadow: -6px 4px 30px var(--burgglow);
+}
+
+.project-card.accent-blue {
+  border-left: 3px solid var(--bluel);
+  border-radius: 0 12px 12px 0;
+  transform: rotate(0.6deg);
+  transition: transform 0.3s ease;
+}
+.project-card.accent-blue:hover {
+  border-color: var(--blue);
+  box-shadow: -6px 4px 30px var(--blueglow);
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.project-name {
+  font-family: var(--fd);
+  font-size: clamp(1.1rem, 2vw, 1.18rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+.project-badge {
+  font-size: 0.67rem;
+  font-family: var(--fm);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.badge-featured { color: var(--burgl); background: var(--burgd); border: 1px solid var(--burg); }
+.badge-week     { color: var(--bluel); background: var(--blued); border: 1px solid rgba(30,75,216,0.3); }
+
+.project-problem {
+  font-size: 0.97rem;
+  color: #a8b3ce;
+  font-style: italic;
+  padding-left: 16px;
+  border-left: 2px solid var(--bd);
+  margin-bottom: 24px;
+}
+.project-desc {
+  font-size: 1rem;
+  color: #a8b3ce;
+  line-height: 1.75;
+  margin-bottom: 24px;
+}
+
+/* Progressive disclosure toggle */
+.hard-part-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: 1px solid var(--bd);
+  border-radius: 6px;
+  padding: 7px 12px;
+  cursor: pointer;
+  font-family: var(--fm);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  width: 100%;
+  text-align: left;
+}
+.hard-part-toggle:hover {
+  border-color: var(--golddk);
+  background: var(--goldd);
+}
+.toggle-arrow {
+  margin-left: auto;
+  transition: transform 0.25s;
+  font-size: 0.65rem;
+}
+.toggle-arrow.open { transform: rotate(180deg); }
+.hard-part-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s, opacity 0.25s;
+  opacity: 0;
+}
+.hard-part-body.expanded {
+  max-height: 400px;
+  opacity: 1;
+}
+.hard-part-inner {
+  background: var(--bgs);
+  border: 1px solid var(--bd);
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.hard-part-label {
+  font-family: var(--fm);
+  font-size: 0.67rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.hard-part-text {
+  font-size: 0.86rem;
+  color: var(--tm);
+  line-height: 1.75;
+}
+.hard-part-text code {
+  font-family: var(--fm);
+  font-size: 0.82em;
+  color: var(--bluel);
+  background: var(--blued);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.project-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.project-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  font-size: 0.7rem;
+  font-family: var(--fm);
+  color: var(--tl);
+  background: var(--bgs);
+  border: 1px solid var(--bd);
+  border-radius: 4px;
+  padding: 2px 7px;
+}
+.project-links { display: flex; gap: 8px; flex-wrap: wrap; }
+.project-links .btn { padding: 6px 13px; font-size: 0.76rem; }
+
+/* ════════════════════════════════════════════════════════════════
+   SNAKE GAME
+══════════════════════════════════════════════════════════════════ */
+/* ═══ OROCHIMARU SNAKE GAME — purple cursed-energy theme ═══ */
+.game-section {
+  margin-bottom: clamp(80px, 14vw, 128px);
+  background:
+    radial-gradient(circle at top left, rgba(145, 92, 255, 0.18), transparent 40%),
+    linear-gradient(135deg, rgba(66, 20, 120, 0.95), rgba(10, 6, 24, 1));
+  border: 1px solid rgba(180, 120, 255, 0.28);
+  border-left: 4px solid #8b5cf6;
+  border-radius: 0 14px 14px 0;
+  padding: clamp(24px, 6vw, 48px) clamp(20px, 5vw, 40px);
+  box-shadow:
+    0 0 40px rgba(139, 92, 246, 0.12),
+    inset 0 0 60px rgba(0, 0, 0, 0.45);
+}
+[data-theme="light"] .game-section {
+  background:
+    radial-gradient(circle at top left, rgba(120, 70, 200, 0.20), transparent 45%),
+    linear-gradient(135deg, rgba(74, 31, 110, 0.95), rgba(20, 10, 40, 1));
+  border-color: rgba(120, 70, 200, 0.4);
+}
+.game-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--fm);
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #d8b4fe;
+  margin-bottom: 12px;
+}
+.game-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: clamp(24px, 6vw, 48px);
+  align-items: start;
+}
+.game-text .section-title { margin-bottom: 24px; color: #f3f0ff; }
+.game-desc {
+  font-size: 0.92rem;
+  color: rgba(216, 210, 240, 0.82);
+  line-height: 1.7;
+  margin: 20px auto 14px;
+  text-align: center;
+  max-width: 560px;
+}
+
+/* Symbol Key */
+.game-symbol-key {
+  padding: 12px 20px;
+  background: rgba(20, 10, 40, 0.6);
+  border: 1px solid rgba(139, 92, 246, 0.28);
+  border-radius: 8px;
+  max-width: 400px;
+  margin: 0 auto 14px;
+}
+.key-heading {
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #a78bfa;
+  margin: 0 0 10px 0;
+  font-family: var(--fm);
+}
+.key-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  justify-content: center;
+}
+.key-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: rgba(216, 210, 240, 0.75);
+}
+.key-swatch {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  flex-shrink: 0;
+  border-radius: 3px;
+}
+.swatch-food {
+  background: radial-gradient(circle at 40% 35%, #ccffcc 0%, #00aa44 55%, #006622 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 6px 2px rgba(127,255,127,0.6);
+}
+.swatch-poison {
+  background: #7f1d1d;
+  border: 1.5px solid #cc0000;
+  box-shadow: 0 0 4px rgba(204,0,0,0.5);
+}
+
+/* Controls hint below key */
+.game-controls-hint {
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba(200, 195, 220, 0.6);
+  margin: 6px auto 0;
+  max-width: 560px;
+}
+.game-stakes {
+  font-size: 1rem;
+  color: #f3f0ff;
+  background: rgba(14, 10, 24, 0.9);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  border-left: 3px solid #c084fc;
+  border-radius: 0 6px 6px 0;
+  padding: 14px 16px;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+.game-stakes strong { color: #f5d98b; font-weight: 500; }
+.game-controls-hint kbd {
+  display: inline-block;
+  background: rgba(14, 10, 24, 0.8);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-size: 0.68rem;
+  color: #d8b4fe;
+}
+
+.arcade-cabinet {
+  background: linear-gradient(180deg, #130d21 0%, #09060f 100%);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: 14px;
+  padding: 16px;
+  width: 260px;
+  flex-shrink: 0;
+  box-shadow:
+    0 0 30px rgba(168, 85, 247, 0.18),
+    inset 0 0 30px rgba(0, 0, 0, 0.6);
+}
+.arcade-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.arcade-title {
+  font-family: var(--fm);
+  font-size: .80rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #d8b4fe;
+}
+.arcade-score {
+  font-family: var(--fm);
+  font-size: .75rem;
+  font-weight: 500;
+  color: #f5d98b;
+}
+#snake-canvas {
+  display: block;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  border-radius: 6px;
+  background: #05030a;
+  width: 320px;
+  height: 310px;
+  max-width: 100%;
+  max-width: 100%;
+  box-shadow:
+    0 0 25px rgba(168, 85, 247, 0.15),
+    inset 0 0 30px rgba(0, 0, 0, 0.8);
+}
+.arcade-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+.arcade-hi {
+  font-family: var(--fm);
+  font-size: 0.62rem;
+  color: rgba(216, 180, 254, 0.6);
+}
+.arcade-hi span { color: #f5d98b; }
+#snake-start-btn {
+  font-family: var(--fm);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+#snake-start-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+}
+
+.game-outcome {
+  display: none;
+  margin-top: 12px;
+  padding: 14px;
+  background: rgba(10, 6, 18, 0.92);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  border-radius: 8px;
+  text-align: center;
+}
+.game-outcome.show {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.game-outcome p {
+  font-size: 2.75rem;
+  color: #f3f0ff;
+  margin-bottom: 10px;
+  line-height: 1.55;
+}
+.game-outcome p strong { color: #f5d98b; font-weight: 500; }
+.game-outcome .btn {
+  width: 100%;
+  justify-content: center;
+  padding: 7px 12px;
+  font-size: 0.55rem;
+}
+
+.touch-controls {
+  display: none;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-top: 8px;
+}
+.touch-btn {
+  background: var(--bgc);
+  border: 1px solid var(--bdh);
+  border-radius: 4px;
+  color: var(--tm);
+  font-size: 0.8rem;
+  padding: 8px;
+  cursor: pointer;
+  text-align: center;
+  user-select: none;
+}
+.touch-btn:active { background: var(--bgch); }
+
+/* ════════════════════════════════════════════════════════════════
+   CONTACT
+══════════════════════════════════════════════════════════════════ */
+.contact-section {
+  padding: clamp(64px, 12vw, 112px) 0;
+  border-top: 1px solid var(--bd);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── Scroll-triggered gold power-up ────────────────────────────
+   When the contact section enters view, the gold heading flares
+   and a diagonal gold sweep crosses the section. Fires once per
+   page load. Golden Wind energy, restrained dose.
+─────────────────────────────────────────────────────────────── */
+.contact-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(232, 200, 74, 0.20) 50%,
+    transparent 60%,
+    transparent 100%);
+  background-size: 300% 300%;
+  background-position: 100% 100%;
+  opacity: 0;
+  z-index: 0;
+}
+.contact-section.power-up::before {
+  animation: power-sweep 1.6s ease-out forwards;
+}
+.contact-section.power-up .contact-heading {
+  animation: shimmer 8s ease-in-out infinite, power-glow 1.6s ease-out forwards;
+}
+.contact-section > * { position: relative; z-index: 1; }
+@keyframes power-sweep {
+  0%   { background-position: 100% 100%; opacity: 0; }
+  25%  { opacity: 1; }
+  100% { background-position: 0% 0%; opacity: 0; }
+}
+@keyframes power-glow {
+  0%   { filter: drop-shadow(0 0 0 transparent); }
+  35%  { filter: drop-shadow(0 0 32px rgba(232, 200, 74, 0.7)) drop-shadow(0 0 60px rgba(232, 200, 74, 0.35)); }
+  100% { filter: drop-shadow(0 0 0 transparent); }
+}
+.contact-section .section-label { margin-bottom: 16px; }
+.contact-heading {
+  font-family: var(--fd);
+  font-size: clamp(1.8rem, 5vw, 3.6rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  padding-bottom: 0.05em;
+  margin-bottom: 24px;
+  display: inline-block;
+}
+.contact-sub {
+  font-size: 0.9rem;
+  color: var(--tm);
+  max-width: 44ch;
+  margin: 0 auto 24px;
+  line-height: 1.7;
+}
+.contact-deadline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--fm);
+  font-size: 0.73rem;
+  color: var(--burgl);
+  background: var(--burgd);
+  border: 1px solid var(--burg);
+  border-radius: 6px;
+  padding: 5px 12px;
+  margin-bottom: 40px;
+}
+.contact-email {
+  display: inline-block;
+  font-size: clamp(0.95rem, 2.5vw, 1.4rem);
+  font-family: var(--fm);
+  font-weight: 500;
+  color: var(--goldl);
+  text-decoration: underline;
+  text-decoration-color: var(--golddk);
+  text-underline-offset: 4px;
+  margin-bottom: 40px;
+  word-break: break-word;
+  transition: text-decoration-color 0.25s, color 0.25s;
+}
+.contact-email:hover {
+  text-decoration-color: var(--goldl);
+  color: var(--gold);
+}
+/* Closing stat — blue this time, not gold. Distributes color. */
+.contact-stat {
+  font-family: var(--fd);
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+  padding-bottom: 0.05em;
+  margin-bottom: 8px;
+  display: inline-block;
+  opacity: 0.85;
+}
+.contact-stat-label {
+  font-size: 0.72rem;
+  font-family: var(--fm);
+  color: var(--tl);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════════════════════════ */
+footer {
+  padding: 32px 0;
+  border-top: 1px solid var(--bd);
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.73rem;
+  color: var(--tl);
+  font-family: var(--fm);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   - 900px : tablet adjustments
+   - 660px : phone — game stacks, social dock hides
+   - 480px : tight mobile — extra spacing reductions
+══════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+  .nav-links { gap: 16px; }
+}
+
+@media (max-width: 660px) {
+  .social-dock { display: none; }
+  .nav-links { display: none; }
+  .game-inner { grid-template-columns: 1fr; }
+  .arcade-cabinet {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  #snake-canvas {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+  .touch-controls { display: grid; }
+  .project-footer { flex-direction: column; align-items: flex-start; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 4px; }
+}
+
+@media (max-width: 480px) {
+  .hero-stats { gap: 20px; }
+  .stat-block { min-width: 80px; }
+  .hero-ctas .btn { width: 100%; justify-content: center; }
+  .availability-badge { font-size: 0.62rem; }
+  .arcade-cabinet { padding: 12px; }
+}
