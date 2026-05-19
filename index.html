@@ -1967,12 +1967,6 @@ footer {
       </div>
     </div>
   </section>
-
-  <!-- ─── SECTION BRIDGE ───────────────────────────────────────── -->
-  <div class="container" style="text-align: center; margin: clamp(60px, 10vw, 100px) 0; color: var(--tl); font-size: 1.9rem; font-style: italic bold;">
-    Caught your breath? Let's actually talk. ↓
-  </div>
-
   <!-- ─── CONTACT ─────────────────────────────────────────────── -->
   <section class="contact-section" id="contact">
     <div class="container">
@@ -2517,7 +2511,7 @@ function drawTaunt() {
   ctx.save();
   ctx.globalAlpha = tauntAlpha;
   ctx.fillStyle = '#d8b4fe';
-  ctx.font = `italic ${CELL*0.52}px 'Playfair Display',serif`;
+  ctx.font = `italic ${CELL*0.72}px 'Playfair Display',serif`;
   ctx.textAlign = 'center';
   ctx.shadowBlur = 8; ctx.shadowColor = '#7c3aed';
   ctx.fillText(tauntText, canvas.width/2, CELL*1.6);
@@ -2713,7 +2707,14 @@ function showDeathScreen() {
     outcomeBtn.href = `mailto:${MY_EMAIL}?subject=${encodeURIComponent('I Beat Orochimaru Snake')}&body=${encodeURIComponent(`Hi Juan,\n\nI beat your Orochimaru Snake game with a score of ${score}.\n\nAs agreed, I now possess exclusive hiring rights to you.\n\nLet's talk.\n\n`)}`;
     outcomeBtn.textContent = 'Claim exclusive rights →';
   } else {
-    outcomeMsg.innerHTML = `☠️ ${LOSE_QUOTES[Math.floor(Math.random()*LOSE_QUOTES.length)]}`;
+    outcomeMsg.innerHTML = `<div style="display: flex; justify-content: center; width: 100%;">
+    <div style="width:100%; max-width:500px; height:0; padding-bottom:56%; position:relative;">
+      <iframe src="https://giphy.com/embed/ZLxUpbTE2vYaY" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+    </div>
+  </div>
+  <p style="text-align: center;"><a href="https://giphy.com/gifs/tongue-ZLxUpbTE2vYaY"></a></p>
+  ☠️ ${LOSE_QUOTES[Math.floor(Math.random()*LOSE_QUOTES.length)]}
+`;
     outcomeBtn.href = `mailto:${MY_EMAIL}?subject=${encodeURIComponent('Job Offer for Juan Hume')}&body=${encodeURIComponent(`Hi Juan,\n\nI lost your Orochimaru Snake game with a score of ${score}.\n\nAs required, I owe you a job opportunity.\n\nRole:\nCompany:\nCompensation:\n\n`)}`;
     outcomeBtn.textContent = 'Send job offer →';
   }
