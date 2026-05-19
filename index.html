@@ -1018,19 +1018,21 @@ nav {
 ──────────────────────────────────────────────────────────────── */
 .hero-stats {
   display: flex;
-  gap: clamp(20px, 5vw, 48px);
+  gap: clamp(14px, 3.5vw, 40px);
   margin-bottom: 40px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  align-items: flex-start;
 }
 .stat-block {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  min-width: 100px;
+  min-width: 0;
+  flex: 1;
 }
 .stat-number {
   font-family: var(--fd);
-  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
   font-weight: 900;
   line-height: 1.1;
   letter-spacing: -0.03em;
@@ -1045,15 +1047,15 @@ nav {
 .stat-block:nth-child(4) .stat-number { filter: drop-shadow(0 0 16px rgba(255,255,255,0.06)); }
 
 .stat-label {
-  font-size: 0.72rem;
+  font-size: clamp(0.58rem, 1vw, 0.72rem);
   color: var(--tm);
   font-family: var(--fm);
   letter-spacing: 0.05em;
 }
 
 .hero-bio {
-  font-size: clamp(0.9rem, 1.5vw, 0.95rem);
-  color: var(--tm);
+  font-size: clamp(1rem, 1.7vw, 1.1rem);
+  color: #a8b3ce;
   max-width: 54ch;
   line-height: 1.85;
   margin-bottom: 32px;
@@ -1178,16 +1180,16 @@ nav {
 .badge-week     { color: var(--bluel); background: var(--blued); border: 1px solid rgba(30,75,216,0.3); }
 
 .project-problem {
-  font-size: 0.87rem;
-  color: var(--tm);
+  font-size: 0.97rem;
+  color: #a8b3ce;
   font-style: italic;
   padding-left: 16px;
   border-left: 2px solid var(--bd);
   margin-bottom: 24px;
 }
 .project-desc {
-  font-size: 0.9rem;
-  color: var(--tm);
+  font-size: 1rem;
+  color: #a8b3ce;
   line-height: 1.75;
   margin-bottom: 24px;
 }
@@ -1322,13 +1324,72 @@ nav {
 }
 .game-text .section-title { margin-bottom: 24px; color: #f3f0ff; }
 .game-desc {
-  font-size: 1.65rem;
-  color: rgba(243, 240, 255, 0.7);
-  line-height: 1.75;
-  margin-bottom: 24px;
+  font-size: 0.92rem;
+  color: rgba(216, 210, 240, 0.82);
+  line-height: 1.7;
+  margin: 20px auto 14px;
+  text-align: center;
+  max-width: 560px;
+}
+
+/* Symbol Key */
+.game-symbol-key {
+  padding: 12px 20px;
+  background: rgba(20, 10, 40, 0.6);
+  border: 1px solid rgba(139, 92, 246, 0.28);
+  border-radius: 8px;
+  max-width: 400px;
+  margin: 0 auto 14px;
+}
+.key-heading {
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #a78bfa;
+  margin: 0 0 10px 0;
+  font-family: var(--fm);
+}
+.key-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  justify-content: center;
+}
+.key-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: rgba(216, 210, 240, 0.75);
+}
+.key-swatch {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  flex-shrink: 0;
+  border-radius: 3px;
+}
+.swatch-food {
+  background: radial-gradient(circle at 40% 35%, #ccffcc 0%, #00aa44 55%, #006622 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 6px 2px rgba(127,255,127,0.6);
+}
+.swatch-poison {
+  background: #7f1d1d;
+  border: 1.5px solid #cc0000;
+  box-shadow: 0 0 4px rgba(204,0,0,0.5);
+}
+
+/* Controls hint below key */
+.game-controls-hint {
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba(200, 195, 220, 0.6);
+  margin: 6px auto 0;
+  max-width: 560px;
 }
 .game-stakes {
-  font-size: 1.55rem;
+  font-size: 1rem;
   color: #f3f0ff;
   background: rgba(14, 10, 24, 0.9);
   border: 1px solid rgba(168, 85, 247, 0.4);
@@ -1339,12 +1400,6 @@ nav {
   line-height: 1.6;
 }
 .game-stakes strong { color: #f5d98b; font-weight: 500; }
-.game-controls-hint {
-  font-size: .72rem;
-  font-family: var(--fm);
-  color: rgba(216, 180, 254, 0.65);
-  margin-bottom: 24px;
-}
 .game-controls-hint kbd {
   display: inline-block;
   background: rgba(14, 10, 24, 0.8);
@@ -1390,8 +1445,9 @@ nav {
   border: 1px solid rgba(168, 85, 247, 0.4);
   border-radius: 6px;
   background: #05030a;
-  width: 244px;
-  height: 244px;
+  width: 293px;
+  height: 293px;
+  max-width: 100%;
   max-width: 100%;
   box-shadow:
     0 0 25px rgba(168, 85, 247, 0.15),
@@ -1629,7 +1685,7 @@ footer {
   .game-inner { grid-template-columns: 1fr; }
   .arcade-cabinet {
     width: 100%;
-    max-width: 320px;
+    max-width: 360px;
     margin: 0 auto;
   }
   #snake-canvas {
@@ -1713,10 +1769,12 @@ footer {
           </div>
 
           <p class="hero-bio">
-            Two years at a credit union taught me how much software gets in people's way.
-            Banking apps built for people who already understand banking. Forms that hide
-            what they're really asking. Now I'm building the other version.
-            <span class="honest">Simple. Accessible. Useful.</span>
+            I spent two years watching people give up on software that was supposed to help them.
+            Forms with 12 fields when you need 3. Dashboards nobody uses. I went through a 19-week
+            bootcamp because I want to build the version that actually works.
+            I pick things up fast, I don't pretend to know what I don't, and I care a lot
+            about whether the thing I shipped actually does its job.
+            <span class="honest">That's the whole pitch.</span>
           </p>
 
           <div class="hero-ctas">
@@ -1858,26 +1916,18 @@ footer {
 
             <div class="game-stakes">
               Reach <strong>30 points</strong> and earn <strong>exclusive first hiring rights</strong>
-              to Juan Hume. Fail, and Orochimaru forces you to send a job offer immediately.
+              to Juan. Fail, and Orochimaru makes you send a job offer immediately.
             </div>
 
-            <p class="game-desc">
-              Custom-built with the <strong>Canvas API</strong> — no game libraries, no frameworks.
-              Purple cursed-energy visuals, bone-colored serpent head, and dynamic speed scaling
-              that ramps up the longer you survive.
-            </p>
-
-            <p class="game-controls-hint">
-              Controls: <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> or <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>
-            </p>
-          </div>
+            
+                      </div>
 
           <div class="arcade-cabinet">
             <div class="arcade-top">
               <span class="arcade-title">🐍 Orochimaru's Trial</span>
               <span class="arcade-score">Score: <span id="score-display">0</span></span>
             </div>
-            <canvas id="snake-canvas" width="244" height="244" aria-label="Snake game"></canvas>
+            <canvas id="snake-canvas" width="293" height="293" aria-label="Snake game"></canvas>
             <div class="arcade-bottom">
               <span class="arcade-hi">Best: <span id="hi-display">0</span></span>
               <button id="snake-start-btn">Start</button>
@@ -1898,12 +1948,28 @@ footer {
             </div>
           </div>
         </div>
+
+        <p class="game-desc">
+          Custom-built with the <strong>Canvas API</strong> — no libraries, no frameworks. Purple cursed-energy visuals with dynamic speed scaling.
+        </p>
+
+        <div class="game-symbol-key">
+          <p class="key-heading">Symbol Key</p>
+          <div class="key-grid">
+            <div class="key-item"><span class="key-swatch swatch-food"></span><span class="key-text">Food (+1 pt)</span></div>
+            <div class="key-item"><span class="key-swatch swatch-poison"></span><span class="key-text">Cursed tile — avoid</span></div>
+          </div>
+        </div>
+
+        <p class="game-controls-hint">
+          Controls: <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> or <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>
+        </p>
       </div>
     </div>
   </section>
 
   <!-- ─── SECTION BRIDGE ───────────────────────────────────────── -->
-  <div class="container" style="text-align: center; margin: clamp(60px, 10vw, 100px) 0; color: var(--tl); font-size: 0.9rem; font-style: italic;">
+  <div class="container" style="text-align: center; margin: clamp(60px, 10vw, 100px) 0; color: var(--tl); font-size: 1.9rem; font-style: italic;">
     Caught your breath? Let's actually talk. ↓
   </div>
 
@@ -2049,11 +2115,9 @@ const portraitImg = document.getElementById('headshot-image');
 
 window.addEventListener('scroll', () => {
   if (substitutionTriggered || !portraitImg) return;
-  if (html.getAttribute('data-theme') !== 'naruto') return;
-
-  const rect = portraitImg.getBoundingClientRect();
-  // Fire when portrait bottom is within 80px of top of viewport
-  if (rect.top <= 0) {
+    const rect = portraitImg.getBoundingClientRect();
+  // Fire when portrait has scrolled past viewport
+  if (rect.bottom <= 100) {
     substitutionTriggered = true;
     triggerSubstitution(rect);
   }
@@ -2626,12 +2690,12 @@ function showDeathScreen() {
   ctx.textAlign = 'center';
   ctx.fillText(isWinner ? 'OROCHIMARU APPROVES' : 'YOU DIED', canvas.width/2, canvas.height/2 - CELL);
   ctx.shadowBlur = 0;
-  ctx.font = `${CELL*0.55}px 'DM Sans',sans-serif`;
+  ctx.font = `${CELL*0.75}px 'DM Sans',sans-serif`;
   ctx.fillStyle = '#f5d98b';
   ctx.fillText(`Score: ${score}`, canvas.width/2, canvas.height/2 + CELL);
   if (!isWinner) {
     const q = LOSE_QUOTES[Math.floor(Math.random()*LOSE_QUOTES.length)];
-    ctx.fillStyle = '#b794f4'; ctx.font = `italic ${CELL*0.45}px 'Playfair Display',serif`;
+    ctx.fillStyle = '#b794f4'; ctx.font = `italic ${CELL*0.65}px 'Playfair Display',serif`;
     // Word-wrap the quote
     const words = q.split(' '), maxW = canvas.width - CELL*2;
     let line = '', lines = [], ly = canvas.height/2 + CELL*2.5;
@@ -2699,10 +2763,10 @@ function drawIdleScreen() {
   ctx.fillText('OROCHIMARU', canvas.width/2, canvas.height/2 - CELL*0.3);
   ctx.shadowBlur = 0;
   ctx.fillStyle = '#b794f4';
-  ctx.font = `${CELL*0.52}px 'DM Sans',sans-serif`;
+  ctx.font = `${CELL*0.82}px 'DM Sans',sans-serif`;
   ctx.fillText("Survive the serpent", canvas.width/2, canvas.height/2 + CELL*0.8);
   ctx.fillStyle = '#6d28d9';
-  ctx.font = `${CELL*0.42}px 'DM Sans',sans-serif`;
+  ctx.font = `${CELL*0.62}px 'DM Sans',sans-serif`;
   ctx.fillText('🏆 Beat 30 pts → hiring rights', canvas.width/2, canvas.height/2 + CELL*1.8);
   idleAnim++;
   idleRaf = requestAnimationFrame(drawIdleScreen);
