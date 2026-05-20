@@ -1752,3 +1752,21 @@ footer {
   color: #fff;
   transform: scale(1.2);
 }
+
+
+/* ════ GAME OUTCOME: static on desktop, fixed popup on mobile ════ */
+@media (min-width: 661px) {
+  .game-outcome {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    max-height: none !important;
+    margin-top: 10px;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.25);
+  }
+  .game-outcome.show {
+    animation: fadeIn 0.3s ease;
+  }
+}
