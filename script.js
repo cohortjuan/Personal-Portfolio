@@ -715,12 +715,21 @@ function showDeathScreen() {
       <iframe src="https://giphy.com/embed/ZLxUpbTE2vYaY" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
     </div>
   </div>
-  <p style="text-align: center;"><a href="https://giphy.com/gifs/tongue-ZLxUpbTE2vYaY"></a></p>
   ☠️ ${LOSE_QUOTES[Math.floor(Math.random()*LOSE_QUOTES.length)]}
 `;
     outcomeBtn.href = `mailto:${MY_EMAIL}?subject=${encodeURIComponent('Job Offer for Juan Hume')}&body=${encodeURIComponent(`Hi Juan,\n\nI lost your Orochimaru Snake game with a score of ${score}.\n\nAs required, I owe you a job opportunity.\n\nRole:\nCompany:\nCompensation:\n\n`)}`;
     outcomeBtn.textContent = 'Send job offer →';
   }
+
+  // Close button
+  const existingClose = outcomeBox.querySelector('.outcome-close-btn');
+  if (existingClose) existingClose.remove();
+  const closeBtn = document.createElement('button');
+  closeBtn.className = 'outcome-close-btn';
+  closeBtn.setAttribute('aria-label', 'Close');
+  closeBtn.textContent = '×';
+  closeBtn.addEventListener('click', () => { outcomeBox.classList.remove('show'); });
+  outcomeBox.insertBefore(closeBtn, outcomeBox.firstChild);
   outcomeBox.classList.add('show');
 }
 
