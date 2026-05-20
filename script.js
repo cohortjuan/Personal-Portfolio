@@ -111,10 +111,21 @@ if (narutoH1Img) narutoH1Img.addEventListener('click', handleNameClick);
 const portraitImg = document.getElementById('headshot-image');
 
 window.addEventListener('scroll', () => {
-  if (substitutionTriggered || !portraitImg) return;
-    const rect = portraitImg.getBoundingClientRect();
+  if (!portraitImg) return;
+  const rect = portraitImg.getBoundingClientRect();
+  // Reset: scrolled back up far enough to show portrait again
+  if (substitutionTriggered && rect.top > 200) {
+    substitutionTriggered = false;
+    portraitImg.style.opacity = '0.7';
+    portraitImg.classList.add('reveal');
+    const existingLog = document.querySelector('.wood-log-fixed');
+    if (existingLog) existingLog.remove();
+    const existingSub = document.querySelector('.substitution-container');
+    if (existingSub) existingSub.remove();
+    return;
+  }
   // Fire when portrait has scrolled past viewport
-  if (rect.bottom <= 100) {
+  if (!substitutionTriggered && rect.bottom <= 100) {
     substitutionTriggered = true;
     triggerSubstitution(rect);
   }
