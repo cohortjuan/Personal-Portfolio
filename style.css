@@ -1725,3 +1725,30 @@ footer {
   width: 100% !important;
   max-width: 100% !important;
 }
+
+/* Disable giphy hover UI — pointer-events blocks the iframe's
+   built-in hover controls (play button, logo, share bar) */
+.giphy-embed {
+  pointer-events: none;
+}
+
+/* Close button — top-right corner of the popup */
+.outcome-close-btn {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: rgba(216, 180, 254, 0.7);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+  z-index: 10;
+  transition: color 0.2s ease, transform 0.2s ease;
+  font-family: var(--fb);
+}
+.outcome-close-btn:hover {
+  color: #fff;
+  transform: scale(1.2);
+}
