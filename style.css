@@ -1077,7 +1077,11 @@ nav {
    STACK
 ══════════════════════════════════════════════════════════════════ */
 .stack-section, .projects-section { margin-bottom: clamp(80px, 14vw, 128px); }
-.stack-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.stack-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
 .stack-pill {
   display: inline-flex;
   align-items: center;
@@ -1116,10 +1120,6 @@ nav {
   border-radius: 12px;
   padding: clamp(20px, 4vw, 32px);
 }
-.project-card:hover { 
-  transform: translateY(-5px); 
-}
-
 .project-card.accent-burg {
   border-left: 3px solid var(--burgl);
   border-radius: 0 12px 12px 0;
@@ -1130,7 +1130,7 @@ nav {
 .project-card.accent-burg:hover {
   border-color: var(--burg);
   box-shadow: -6px 4px 30px var(--burgglow);
-  transform: translateY(-5px) rotate(-1.5deg); /* Tilts left */
+  transform: translateY(-5px) rotate(-1.5deg); /* Lifts and tilts left */
 }
 
 .project-card.accent-blue {
@@ -1143,7 +1143,7 @@ nav {
 .project-card.accent-blue:hover {
   border-color: var(--blue);
   box-shadow: -6px 4px 30px var(--blueglow);
-  transform: translateY(-5px) rotate(1.5deg); /* Tilts right */
+  transform: translateY(-5px) rotate(1.5deg); /* Lifts and tilts right */
 }
 
 .project-header {
