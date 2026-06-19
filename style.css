@@ -1116,7 +1116,9 @@ nav {
   border-radius: 12px;
   padding: clamp(20px, 4vw, 32px);
 }
-.project-card:hover { transform: translateY(-5px); }
+.project-card:hover { 
+  transform: translateY(-5px); 
+}
 
 .project-card.accent-burg {
   border-left: 3px solid var(--burgl);
