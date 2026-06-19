@@ -516,10 +516,7 @@ nav {
 }
 
 /* ────────────────────────────────────────────────────────────────
-   HERO NAME — the J no longer gets clipped
-   - line-height bumped from 1.0 → 1.15 (descenders need room)
-   - padding-bottom adds buffer for the gold-text gradient clip
-   - display: inline-block constrains the gradient correctly
+   HERO NAME 
 ──────────────────────────────────────────────────────────────── */
 .hero-name {
   font-family: var(--fd);
@@ -1119,28 +1116,32 @@ nav {
   border-radius: 12px;
   padding: clamp(20px, 4vw, 32px);
 }
-.project-card:hover { transform: translateY(-2px) rotate(0deg); }
+.project-card:hover { transform: translateY(-5px); }
 
 .project-card.accent-burg {
   border-left: 3px solid var(--burgl);
   border-radius: 0 12px 12px 0;
-  transform: rotate(-0.6deg);
+  transform: rotate(0deg);
   transition: transform 0.3s ease;
 }
+
 .project-card.accent-burg:hover {
   border-color: var(--burg);
   box-shadow: -6px 4px 30px var(--burgglow);
+  transform: translateY(-5px) rotate(-1.5deg); /* Tilts left */
 }
 
 .project-card.accent-blue {
   border-left: 3px solid var(--bluel);
   border-radius: 0 12px 12px 0;
-  transform: rotate(0.6deg);
+  transform: rotate(0deg);
   transition: transform 0.3s ease;
 }
+
 .project-card.accent-blue:hover {
   border-color: var(--blue);
   box-shadow: -6px 4px 30px var(--blueglow);
+  transform: translateY(-5px) rotate(1.5deg); /* Tilts right */
 }
 
 .project-header {
