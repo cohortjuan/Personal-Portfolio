@@ -272,7 +272,38 @@ document.querySelectorAll('.hard-part-toggle').forEach(btn => {
     const isOpen = body.classList.contains('expanded');
     body.classList.toggle('expanded', !isOpen);
     arrow.classList.toggle('open', !isOpen);
-    btn.setAttribute('aria-expanded', String(!isOpen));  });});/* ════ CARD EFFECTS TOGGLE ════ */const cardFxBtn = document.getElementById('cardFxBtn');const projectsGrid = document.querySelector('.projects-grid');if (cardFxBtn && projectsGrid) {  cardFxBtn.addEventListener('click', () => {    const isActive = cardFxBtn.classList.toggle('active');    cardFxBtn.setAttribute('aria-pressed', String(isActive));    (projectsGrid || document.querySelector('#projects .container')).classList.toggle('no-card-fx', isActive);    if (isActive) {      document.querySelectorAll('.hard-part-toggle').forEach(function(t) {        const targetId = t.getAttribute('aria-controls');        const body = document.getElementById(targetId);        const arrow = t.querySelector('.toggle-arrow');        if (body && !body.classList.contains('expanded')) {          body.classList.add('expanded');          if (arrow) arrow.classList.add('open');          t.setAttribute('aria-expanded', 'true');        }      });    }  });}
+    btn.setAttribute('aria-expanded', String(!isOpen));  });});/* ════ CARD EFFECTS TOGGLE ════ */
+const cardFxBtn = document.getElementById('cardFxBtn');
+const projectsGrid = document.querySelector('.projects-grid');
+
+if (cardFxBtn && projectsGrid) {
+  cardFxBtn.addEventListener('click', () => {
+    // 1. Toggle the active state on the button
+    const isActive = cardFxBtn.classList.toggle('active');
+    
+    // 2. Set accessibility attribute
+    cardFxBtn.setAttribute('aria-pressed', String(isActive));
+    
+    // 3. SWAPPED: If active is true, no-card-fx is false (Effects stay ON)
+    const container = projectsGrid || document.querySelector('#projects .container');
+    container.classList.toggle('no-card-fx', !isActive);
+    
+    // 4. Handle progressive disclosure if active
+    if (isActive) {
+      document.querySelectorAll('.hard-part-toggle').forEach(function (t) {
+        const targetId = t.getAttribute('aria-controls');
+        const body = document.getElementById(targetId);
+        const arrow = t.querySelector('.toggle-arrow');
+        
+        if (body && !body.classList.contains('expanded')) {
+          body.classList.add('expanded');
+          if (arrow) arrow.classList.add('open');
+          t.setAttribute('aria-expanded', 'true');
+        }
+      });
+    }
+  });
+}
 
 /* ════════════════════════════════════════════════════════════════
    OROCHIMARU SNAKE — enhanced
