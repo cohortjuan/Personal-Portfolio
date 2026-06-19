@@ -16,7 +16,7 @@
   --bgch:  #152040;
 
   --blue:    #1e4bd8;
-  --bluel:   #3b6ef5;
+  --bluel:   #3b6ef5;h
   --blued:   rgba(30,75,216,0.18);
   --blueglow: rgba(30,75,216,0.32);
 
@@ -1314,7 +1314,7 @@ nav {
 .game-inner {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: clamp(24px, 6vw, 48px);
+  gap: clamp(20px, 4vw, 36px);
   align-items: start;
 }
 .game-text .section-title { margin-bottom: 24px; color: #f3f0ff; }
@@ -1410,7 +1410,7 @@ nav {
   border: 1px solid rgba(168, 85, 247, 0.35);
   border-radius: 14px;
   padding: 16px;
-  width: 260px;
+  width: 340px;
   flex-shrink: 0;
   box-shadow:
     0 0 30px rgba(168, 85, 247, 0.18),
