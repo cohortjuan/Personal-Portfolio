@@ -62,11 +62,11 @@
               <span class="stat-label">week bootcamp</span>
             </div>
             <div class="stat-block">
-              <span class="stat-number gold-text" data-target="4" data-suffix="">0</span>
+              <span class="stat-number gold-text" data-target="5" data-suffix="">0</span>
               <span class="stat-label">apps shipped</span>
             </div>
             <div class="stat-block">
-              <span class="stat-number gold-text" data-target="120" data-suffix="+">0</span>
+              <span class="stat-number gold-text" data-target="200" data-suffix="+">0</span>
               <span class="stat-label">hours of code</span>
             </div>
             <div class="stat-block">
@@ -123,18 +123,18 @@
   <!-- ─── PROJECTS ────────────────────────────────────────────── -->
   <section class="projects-section" id="projects">
     <div class="container">
-      <div class="projects-section-header">      <p class="section-label">Featured Work</p>      <h2 class="section-title">Projects that prove the skills</h2>      <button class="card-fx-toggle active" id="cardFxBtn" aria-pressed="true" title="Toggle card effects">Card FX</button>      </div>      <div class="projects-grid">
+      <div class="projects-section-header">  <p class="section-label">Featured Work</p>      <h2 class="section-title">Projects that prove the skills</h2>      <button class="card-fx-toggle active" id="cardFxBtn" aria-pressed="true" title="Toggle card effects">Card FX</button>      </div>      <div class="projects-grid">
 
-        <!-- Card 1: BURGUNDY accent + burgundy hover glow -->
+       <!-- Card 1: BURGUNDY accent + burgundy hover glow -->
         <article class="project-card accent-burg">
           <div class="project-header">
-            <h3 class="project-name">Habit Tracker</h3>
+            <h3 class="project-name">Whispers</h3>
             <span class="project-badge badge-featured">⭐ Featured</span>
           </div>
-          <p class="project-problem">"Most habit apps are doing too much. This one is a checkbox with memory."</p>
+          <p class="project-problem">"Family stories die with the people who told them. Whispers keeps the audio, not just the memory."</p>
           <p class="project-desc">
-            Tap a thing. It remembers. Get a streak going, watch the grid fill up.
-            I built it to learn CSS Grid for real — not from a video.
+            A family audio archive tied to a branching family tree. Record a story, attach it to a person,
+            watch the tree fill in with voices instead of just names and dates.
           </p>
 
           <button class="hard-part-toggle" aria-expanded="false" aria-controls="hp-1">
@@ -145,71 +145,27 @@
             <div class="hard-part-inner">
               <p class="hard-part-label">The Hardest Part</p>
               <p class="hard-part-text">
-                Streak calculation broke when users skipped days then came back. I modelled the
-                data as a <code>Set</code> of ISO date strings rather than a boolean array, then
-                walked backwards from today. Switching the data structure halved the logic complexity.
+                Modeling a family tree that isn't strictly hierarchical — remarriages, half-siblings,
+                adoptions — while keeping audio recordings correctly attached to the right person and
+                relationship. Solved it with a graph-style relational schema in PostgreSQL rather than
+                a rigid parent/child tree, so the structure can bend without breaking.
               </p>
             </div>
           </div>
 
           <div class="project-footer">
             <div class="project-chips">
-              <span class="chip">JavaScript</span>
-              <span class="chip">CSS Grid</span>
-              <span class="chip">localStorage</span>
+              <span class="chip">React</span>
+              <span class="chip">Node/Express</span>
+              <span class="chip">PostgreSQL</span>
             </div>
             <div class="project-links">
-              <a href="https://cohortjuan.github.io/HabitTracker/" class="btn btn-primary">Live Demo →</a>
-              <a href="https://cohortjuan.github.io/" class="btn btn-ghost">Code</a>
+              <a href="https://whispers-app.vercel.app/" class="btn btn-primary">Live Demo →</a>
+              <a href="https://github.com/cohortjuan" class="btn btn-ghost">Code</a>
             </div>
           </div>
         </article>
-
-        <!-- Card 2: BLUE accent + blue hover glow (balances the page) -->
-        <article class="project-card accent-blue">
-          <div class="project-header">
-            <h3 class="project-name">CSS Layout Lab</h3>
-            <span class="project-badge badge-week">Capstone</span>
-          </div>
-          <p class="project-problem">"The Flexbox tutor I needed in week 3 of bootcamp."</p>
-          <p class="project-desc">
-            Pick a property, change a value, watch it move. That's it.
-            I built this because reading the docs was killing me. Turns out other people had the same problem.
-          </p>
-
-          <button class="hard-part-toggle" aria-expanded="false" aria-controls="hp-2">
-            ⚙ Show technical detail — the hardest part
-            <span class="toggle-arrow" aria-hidden="true">▾</span>
-          </button>
-          <div class="hard-part-body" id="hp-2">
-            <div class="hard-part-inner">
-              <p class="hard-part-label">The Hardest Part</p>
-              <p class="hard-part-text">
-                Keeping the preview and code display in sync without a framework required careful
-                DOM management. I used a single <code>state</code> object and a <code>render()</code>
-                function that always rebuilt the UI from scratch — I'd essentially invented one-way
-                data flow before I knew that's what React does.
-              </p>
-            </div>
-          </div>
-
-          <div class="project-footer">
-            <div class="project-chips">
-              <span class="chip">HTML</span>
-              <span class="chip">CSS</span>
-              <span class="chip">Vanilla JS</span>
-            </div>
-            <div class="project-links">
-              <a href="https://cohortjuan.github.io/CSSXplorer/" class="btn btn-primary">Live Demo →</a>
-              <a href="https://cohortjuan.github.io/" class="btn btn-ghost">Code</a>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
+                
   <!-- ─── SNAKE GAME ──────────────────────────────────────────── -->
   <section id="game">
     <div class="container">
