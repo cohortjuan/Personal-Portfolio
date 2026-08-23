@@ -165,6 +165,52 @@
             </div>
           </div>
         </article>
+        <!-- Card 2: BLUE accent + blue hover glow -->
+        <article class="project-card accent-blue">
+          <div class="project-header">
+            <h3 class="project-name">Gather</h3>
+            <span class="project-badge badge-week">Capstone</span>
+          </div>
+          <p class="project-problem">"Twelve said yes. Seven showed up. Gather makes RSVPs mean something."</p>
+          <p class="project-desc">
+            A social events app where hosts get a reliability score instead of an empty "going" click —
+            RSVP, waitlist auto-promotion, and attendance tracking, built full-stack from the schema up.
+          </p>
+
+          <button class="hard-part-toggle" aria-expanded="false" aria-controls="hp-2">
+            ⚙ Show technical detail — the hardest part
+            <span class="toggle-arrow" aria-hidden="true">▾</span>
+          </button>
+          <div class="hard-part-body" id="hp-2">
+            <div class="hard-part-inner">
+              <p class="hard-part-label">The Hardest Part</p>
+              <p class="hard-part-text">
+                Keeping RSVP history honest. Editing an event's start time shouldn't retroactively
+                rewrite whether someone cancelled "two weeks out" or "an hour out" — so status changes
+                write <code>hours_before_event</code> at the moment they happen, not derived later.
+                Attendance is a host-driven review gate, never auto-inserted, so an unmarked RSVP always
+                means "not yet reviewed," never an implicit no-show.
+              </p>
+            </div>
+          </div>
+
+          <div class="project-footer">
+            <div class="project-chips">
+              <span class="chip">React</span>
+              <span class="chip">Node/Express</span>
+              <span class="chip">PostgreSQL</span>
+              <span class="chip">Prisma</span>
+            </div>
+            <div class="project-links">
+              <a href="https://gather-app-beige.vercel.app/" class="btn btn-primary">Live Demo →</a>
+              <a href="https://github.com/Cohort-nine/gather-app-monorepo" class="btn btn-ghost">Code</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
                 
   <!-- ─── SNAKE GAME ──────────────────────────────────────────── -->
   <section id="game">
