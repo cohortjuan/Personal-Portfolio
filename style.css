@@ -1123,27 +1123,27 @@ nav {
 .project-card.accent-burg {
   border-left: 3px solid var(--burgl);
   border-radius: 0 12px 12px 0;
-  transform: rotate(0deg);
+  transform: rotate(-1.5deg); /* Starts tilted left */
   transition: transform 0.3s ease;
 }
 
 .project-card.accent-burg:hover {
   border-color: var(--burg);
   box-shadow: -6px 4px 30px var(--burgglow);
-  transform: translateY(-5px) rotate(-1.5deg); /* Lifts and tilts left */
+  transform: translateY(-5px) rotate(0deg); /* Lifts and straightens */
 }
 
 .project-card.accent-blue {
   border-left: 3px solid var(--bluel);
   border-radius: 0 12px 12px 0;
-  transform: rotate(0deg);
+  transform: rotate(1.5deg); /* Starts tilted right */
   transition: transform 0.3s ease;
 }
 
 .project-card.accent-blue:hover {
   border-color: var(--blue);
   box-shadow: -6px 4px 30px var(--blueglow);
-  transform: translateY(-5px) rotate(1.5deg); /* Lifts and tilts right */
+  transform: translateY(-5px) rotate(0deg); /* Lifts and straightens */
 }
 
 .project-header {
@@ -1332,7 +1332,13 @@ nav {
   animation: pulse 2.2s ease-in-out infinite;
 }
 
-/* no-card-fx: disables the hover glow/tilt on project cards */
+/* no-card-fx: disables the tilt/glow on project cards, resting state and
+   hover alike -- cards now start tilted, so this needs to flatten the
+   base state too or "disabled" would still look permanently crooked */
+.no-card-fx .project-card.accent-burg,
+.no-card-fx .project-card.accent-blue {
+  transform: none !important;
+}
 .no-card-fx .project-card.accent-burg:hover,
 .no-card-fx .project-card.accent-blue:hover {
   transform: none !important;
