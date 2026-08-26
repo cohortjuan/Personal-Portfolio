@@ -42,9 +42,9 @@ That's it. No `npm install`. No build step. It just runs.
 
 ## Background
 
-Recent graduate of a 19-week immersive bootcamp — went from zero to shipping two real applications in just under five months. This portfolio site is the third.
+Recent graduate of a 19-week immersive bootcamp — went from zero to shipping 5 complete projects/applications in just under 6 months. This portfolio site is the third.
 
-Currently learning React Hooks and state management. Actively interviewing for junior developer roles in the Columbus / Ohio area.
+Currently upskilling in Python. Actively interviewing for developer roles in the Columbus / Ohio area or Remote.
 
 ## Contact
 
