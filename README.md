@@ -2,7 +2,7 @@
 
 Personal portfolio site for Juan Hume, full stack developer based in Columbus, Ohio.
 
-**Live site:** [cohortjuan.github.io](https://cohortjuan.github.io)
+**Live site:** [Juan H - Portfolio](https://cohortjuan.github.io/Personal-Portfolio/)
 
 ## About
 
