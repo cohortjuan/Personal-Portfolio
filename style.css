@@ -1044,7 +1044,7 @@ nav {
 
 .hero-bio {
   font-size: clamp(1rem, 1.7vw, 1.1rem);
-  color: #a8b3ce;
+  color: var(--tm);
   max-width: 54ch;
   line-height: 1.85;
   margin-bottom: 32px;
